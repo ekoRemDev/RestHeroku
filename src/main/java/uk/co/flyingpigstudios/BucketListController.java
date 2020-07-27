@@ -20,35 +20,35 @@ public class BucketListController {
         return ResponseEntity.ok(bucketRepository.findAll());
     }
 
-//    @GetMapping(value = "/bucket")
-//    public ResponseEntity getBucket(@RequestParam(value="id") Long id) {
-//        Optional<BucketList> foundBucketList = bucketRepository.findById(id);
-//
-//        if(foundBucketList.isPresent()){
-//            return ResponseEntity.ok(foundBucketList.get());
-//        }else {
-//            return ResponseEntity.badRequest().body("No bucket with specified id " + id + " found");
-//        }
-//    }
+    @GetMapping(value = "/bucket")
+    public ResponseEntity getBucket(@RequestParam(value="id") Long id) {
+        Optional<BucketList> foundBucketList = bucketRepository.findById(id);
+
+        if(foundBucketList.isPresent()){
+            return ResponseEntity.ok(foundBucketList.get());
+        }else {
+            return ResponseEntity.badRequest().body("No bucket with specified id " + id + " found");
+        }
+    }
 
     @PostMapping(value = "/")
     public ResponseEntity addToBucketList(@RequestParam(value="name") String name, @RequestParam(value="description") String desc) {
         return ResponseEntity.ok(bucketRepository.save(new BucketList(name, desc)));
     }
 
-//    @PutMapping(value = "/")
-//    public ResponseEntity updateBucketList(@RequestParam(value="name") String name, @RequestParam(value="id") Long id, @RequestParam(value="description") String desc) {
-//        Optional<BucketList> optionalBucketList = bucketRepository.findById(id);
-//        if(!optionalBucketList.isPresent()){
-//            return ResponseEntity.badRequest().body("No bucket with specified id " + id + " found");
-//        }
-//
-//        BucketList foundBucketList = optionalBucketList.get();
-//        foundBucketList.setName(name);
-//        foundBucketList.setDescription(desc);
-//
-//        return ResponseEntity.ok(bucketRepository.save(foundBucketList));
-//    }
+    @PutMapping(value = "/")
+    public ResponseEntity updateBucketList(@RequestParam(value="name") String name, @RequestParam(value="id") Long id, @RequestParam(value="description") String desc) {
+        Optional<BucketList> optionalBucketList = bucketRepository.findById(id);
+        if(!optionalBucketList.isPresent()){
+            return ResponseEntity.badRequest().body("No bucket with specified id " + id + " found");
+        }
+
+        BucketList foundBucketList = optionalBucketList.get();
+        foundBucketList.setName(name);
+        foundBucketList.setDescription(desc);
+
+        return ResponseEntity.ok(bucketRepository.save(foundBucketList));
+    }
 
     @DeleteMapping(value = "/")
     public ResponseEntity removeBucketList(@RequestParam(value="id") Long id) {
