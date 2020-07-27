@@ -50,10 +50,10 @@ public class BucketListController {
 //        return ResponseEntity.ok(bucketRepository.save(foundBucketList));
 //    }
 
-//    @DeleteMapping(value = "/")
-//    public ResponseEntity removeBucketList(@RequestParam(value="id") Long id) {
-//        bucketRepository.deleteById(id);
-//        return ResponseEntity.noContent().build();
-//    }
+    @DeleteMapping(value = "/")
+    public ResponseEntity removeBucketList(@RequestParam(value="id") Long id) {
+        bucketRepository.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
